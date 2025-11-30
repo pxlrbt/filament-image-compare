@@ -4,11 +4,11 @@ namespace pxlrbt\FilamentImageCompare\Filament;
 
 use Closure;
 use Filament\Infolists\Components\ImageEntry;
-use pxlrbt\FilamentFavicon\Support\FaviconService;
 
 class ImageCompareEntry extends ImageEntry
 {
     public string|Closure|null $leftImage;
+
     public string|Closure|null $rightImage;
 
     public static function getDefaultName(): ?string
@@ -39,25 +39,24 @@ class ImageCompareEntry extends ImageEntry
             return '';
         }
 
-
         $attributes = $this->getExtraAttributeBag()
             ->class([
                 'fi-in-image-compare',
             ])
             ->merge([
                 'wire:ingore',
-                'x-init' => <<<JS
+                'x-init' => <<<'JS'
                     () => {
-                        const clippedImage = \$el.querySelector('.image-2-wrapper img');
-                        const clippingSlider = \$el.querySelector('.image-compare-input');
+                        const clippedImage = $el.querySelector('.image-2-wrapper img');
+                        const clippingSlider = $el.querySelector('.image-compare-input');
 
                         clippingSlider.addEventListener('input', (event) => {
-                            const newValue = `\${event.target.value}%`
+                            const newValue = `${event.target.value}%`
                             clippedImage.style.setProperty('--exposure', newValue)
                         })
                     }
                 JS
-            ],  escape: false);
+            ], escape: false);
 
         return $this->wrapEmbeddedHtml(<<<BLADE
             <div {$attributes->toHtml()}>

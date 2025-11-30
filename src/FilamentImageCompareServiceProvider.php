@@ -14,7 +14,7 @@ class FilamentImageCompareServiceProvider extends PackageServiceProvider
     public function configurePackage(Package $package): void
     {
         FilamentAsset::register([
-            Css::make('image-compare', __DIR__.'/../resources/image-compare.css')
+            Css::make('image-compare', __DIR__.'/../resources/image-compare.css'),
         ], static::$name);
 
         $package
