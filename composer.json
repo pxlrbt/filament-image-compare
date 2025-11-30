@@ -1,0 +1,37 @@
+{
+    "name": "pxlrbt/filament-image-compare",
+    "description": "InfolistEntry for comparing images side by side",
+    "license": "MIT",
+    "keywords": [
+        "image comparision",
+        "filament",
+        "laravel"
+    ],
+    "authors": [
+        {
+            "name": "Dennis Koch",
+            "email": "hey@denniskoch.dev"
+        }
+    ],
+    "require": {
+        "filament/filament": "^4.0"
+    },
+    "require-dev": {
+        "laravel/pint": "^1.10"
+    },
+    "autoload": {
+        "psr-4": {
+            "pxlrbt\\FilamentImageCompare\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "\\pxlrbt\\FilamentImageCompare\\FilamentImageCompareServiceProvider"
+            ]
+        }
+    },
+    "scripts": {
+        "pint": "vendor/bin/pint"
+    }
+}

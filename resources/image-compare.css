@@ -1,0 +1,92 @@
+.fi-in-image-compare {
+    display: grid;
+    position: relative;
+    width: fit-content;
+    border: 1px solid oklch(from var(--gray-950) l c h / 0.1);
+
+    img {
+        grid-area: 1 / 1;
+        width: 100%;
+        border-radius: var(--radius-md);
+        overflow: hidden;
+    }
+
+    .image-2-wrapper {
+        grid-area: 1 / 1;
+        display: block;
+        width: 100%;
+        filter: drop-shadow(-2px 0 0 rgba(0 0 0 / 0.9));
+
+
+        img {
+            --exposure: 50%;
+
+            clip-path: polygon(
+                calc(var(--exposure) + 1px) 0,
+                100% 0,
+                100% 100%,
+                calc(var(--exposure) + 1px) 100%
+            );
+        }
+    }
+
+    label {
+        /*align-items: stretch;*/
+        display: flex;
+        position: absolute;
+        inset: 0;
+    }
+
+    input {
+        --thumb-size: clamp(1em, 5vmin, 3em);
+
+        /* Go half a "thumb" off the edge to the left and right" */
+        margin: 0 calc(var(--thumb-size) / -2);
+        /* Make the input a full "thumb" wider than 100% so it extends past the edges */
+        width: calc(100% + var(--thumb-size));
+        cursor: col-resize;
+        appearance: none;
+        -webkit-appearance: none;
+        background: none;
+        border: none;
+    }
+
+    /* Firefox */
+    input::-moz-range-thumb {
+        background-color: hsla(0, 0%, 100%, 0.9);
+        /* An inline SVG of two arrows facing opposite directions */
+        background-image: url('data:image/svg+xml;utf8,<svg viewbox="0 0 60 60"  width="60" height="60" xmlns="http://www.w3.org/2000/svg"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="M20 20 L10 30 L20 40"/><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="M40 20 L50 30 L40 40"/></svg>');
+        background-size: 90%;
+        background-position: center center;
+        background-repeat: no-repeat;
+        border-radius: 50%;
+        border: 2px hsla(0, 0%, 0%, 0.9) solid;
+        color: hsla(0, 0%, 0%, 0.9);
+        width: var(--thumb-size);
+        height: var(--thumb-size);
+    }
+
+    input:focus::-moz-range-thumb {
+        box-shadow: 0px 0px 0px 2px hsl(200, 100%, 80%);
+    }
+
+    /* Chrome, Safari and Edge, */
+    input::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        background-color: hsla(0, 0%, 100%, 0.9);
+        /* An inline SVG of two arrows facing opposite directions */
+        background-image: url('data:image/svg+xml;utf8,<svg viewbox="0 0 60 60"  width="60" height="60" xmlns="http://www.w3.org/2000/svg"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="M20 20 L10 30 L20 40"/><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="M40 20 L50 30 L40 40"/></svg>');
+        background-size: 90%;
+        background-position: center center;
+        background-repeat: no-repeat;
+        border-radius: 50%;
+        border: 2px hsla(0, 0%, 0%, 0.9) solid;
+        color: hsla(0, 0%, 0%, 0.9);
+        width: var(--thumb-size);
+        height: var(--thumb-size);
+    }
+
+    input:focus::-webkit-slider-thumb {
+        box-shadow: 0px 0px 0px 2px hsl(200, 100%, 80%);
+    }
+}
